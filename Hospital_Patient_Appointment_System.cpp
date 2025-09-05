@@ -4,7 +4,7 @@
 #define N 10
 #define STACK_SIZE 10
 
-//  Doctor BST 
+// Doctor BST
 struct Doctor
 {
     int id;
@@ -249,14 +249,16 @@ void displayQueue()
     }
 }
 
-//  Stack for deleted appointments
+// Stack for deleted appointments
 struct Patient stack[STACK_SIZE];
 int top = -1;
 
 void push(struct Patient p)
 {
     if (top == STACK_SIZE - 1)
+    {
         printf("Stack Overflow\n");
+    }
     else
     {
         top++;
@@ -265,13 +267,22 @@ void push(struct Patient p)
 }
 
 void pop()
-{
+{ // Undo last deletion
     if (top == -1)
+    {
         printf("Stack Underflow\n");
+    }
     else
     {
         struct Patient p = stack[top];
         printf("Undo Appointment Deletion -> %s (ID: %d) restored.\n", p.name, p.id);
+
+        // Restore patient to linked list
+        addPatient(p.name, p.id, p.age, p.gender, p.disease, p.appTime);
+
+        // restore to queue
+        enqueue(p);
+
         top--;
     }
 }
@@ -301,7 +312,7 @@ void displayStack()
     }
 }
 
-//  Main Menu 
+// Main Menu
 int main()
 {
     struct Doctor *doctorRoot = NULL;
@@ -432,7 +443,7 @@ int main()
         else if (choice == 4)
         {
             int ch;
-            printf("Stack Menu: 1.Pop 2.Peek 3.Display\n");
+            printf("Stack Menu: 1.Pop(Undo) 2.Peek 3.Display\n");
             scanf("%d", &ch);
             if (ch == 1)
                 pop();
