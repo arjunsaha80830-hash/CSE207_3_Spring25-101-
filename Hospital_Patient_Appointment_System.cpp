@@ -4,7 +4,7 @@
 #define N 10
 #define STACK_SIZE 10
 
-// ---------------- Doctor BST ----------------
+//  Doctor BST 
 struct Doctor
 {
     int id;
@@ -95,7 +95,7 @@ void inorderDoctor(struct Doctor *root)
     inorderDoctor(root->right);
 }
 
-// ---------------- Patient Linked List ----------------
+// Patient Linked List
 struct Patient
 {
     char name[100];
@@ -178,7 +178,7 @@ void deletePatient(int id)
     printf("Patient with ID %d not found.\n", id);
 }
 
-// ---------------- Appointment Queue ----------------
+// Appointment Queue
 struct Patient queue[N];
 int front = -1, rear = -1;
 
@@ -249,7 +249,7 @@ void displayQueue()
     }
 }
 
-// ---------------- Stack for deleted appointments ----------------
+//  Stack for deleted appointments
 struct Patient stack[STACK_SIZE];
 int top = -1;
 
@@ -301,7 +301,7 @@ void displayStack()
     }
 }
 
-// ---------------- Main Menu ----------------
+//  Main Menu 
 int main()
 {
     struct Doctor *doctorRoot = NULL;
